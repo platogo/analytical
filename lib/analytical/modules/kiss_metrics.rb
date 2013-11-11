@@ -47,6 +47,18 @@ module Analytical
         "_kmq.push(['alias', '#{old_identity}', '#{new_identity}']);"
       end
 
+      def track_click(element_id_or_class, name)
+        "_kmq.push(['trackClick', '#{element_id_or_class}', '#{name}']);"
+      end
+
+      def track_click_exit(element_id_or_class, name)
+        "_kmq.push(['trackClickOnOutboundLink', '#{element_id_or_class}', '#{name}']);"
+      end
+
+      def track_submit(element_id_or_class, name)
+        "_kmq.push(['trackSubmit', '#{element_id_or_class}', '#{name}']);"
+      end
+
     private
 
       def check_js_url_key
