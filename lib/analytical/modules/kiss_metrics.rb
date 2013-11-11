@@ -29,8 +29,8 @@ module Analytical
 
       def identify(id, *args)
         data = args.first || {}
-        km_id = data[:email] || id
         "_kmq.push([\"identify\", \"#{ km_id }\"]);"
+        km_id = id || data[:email]
       end
 
       def event(name, *args)
