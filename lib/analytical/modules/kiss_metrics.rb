@@ -29,22 +29,22 @@ module Analytical
 
       def identify(id, *args)
         data = args.first || {}
-        "_kmq.push([\"identify\", \"#{ km_id }\"]);"
         km_id = id || data[:email]
+        "_kmq.push(['identify', '#{ km_id }']);"
       end
 
       def event(name, *args)
         data = args.first || {}
-        "_kmq.push([\"record\", \"#{name}\", #{data.to_json}]);"
+        "_kmq.push(['record', '#{name}', #{data.to_json}]);"
       end
 
       def set(data)
         return '' if data.blank?
-        "_kmq.push([\"set\", #{data.to_json}]);"
+        "_kmq.push(['set', #{data.to_json}]);"
       end
 
       def alias_identity(old_identity, new_identity)
-        "_kmq.push([\"alias\", \"#{old_identity}\", \"#{new_identity}\"]);"
+        "_kmq.push(['alias', '#{old_identity}', '#{new_identity}']);"
       end
 
     private
