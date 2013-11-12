@@ -30,33 +30,35 @@ module Analytical
       def identify(id, *args)
         data = args.first || {}
         km_id = id || data[:email]
-        "_kmq.push(['identify', '#{ km_id }']);"
+        "_kmq.push([\"identify\", \"#{ km_id }\"]);"
       end
 
       def event(name, *args)
         data = args.first || {}
-        "_kmq.push(['record', '#{name}', #{data.to_json}]);"
+        "_kmq.push([\"record\", \"#{name}\", #{data.to_json}]);"
       end
 
       def set(data)
         return '' if data.blank?
-        "_kmq.push(['set', #{data.to_json}]);"
+        "_kmq.push([\"set\", #{data.to_json}]);"
       end
 
       def alias_identity(old_identity, new_identity)
-        "_kmq.push(['alias', '#{old_identity}', '#{new_identity}']);"
+        "_kmq.push([\"alias\", \"#{old_identity}\", \"#{new_identity}\"]);"
       end
 
-      def track_click(element_id_or_class, name)
-        "_kmq.push(['trackClick', '#{element_id_or_class}', '#{name}']);"
+      def track_click(element_id_or_class, name, *args)
+        data = args.first || {}
+        "_kmq.push([\"trackClick\", \"#{element_id_or_class}\", \"#{name}\", #{data.to_json}]);"
       end
 
-      def track_click_exit(element_id_or_class, name)
-        "_kmq.push(['trackClickOnOutboundLink', '#{element_id_or_class}', '#{name}']);"
+      def track_click_exit(element_id_or_class, name, *args)
+        data = args.first || {}
+        "_kmq.push([\"trackClickOnOutboundLink\", \"#{element_id_or_class}\", \"#{name}\", #{data.to_json}]);"
       end
 
       def track_submit(element_id_or_class, name)
-        "_kmq.push(['trackSubmit', '#{element_id_or_class}', '#{name}']);"
+        "_kmq.push([\"trackSubmit\", \"#{element_id_or_class}\", \"#{name}\"]);"
       end
 
     private
